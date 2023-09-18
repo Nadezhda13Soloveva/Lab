@@ -191,7 +191,82 @@ To https://github.com/Nadezhda13Soloveva/Lab.git
  * [new branch]      lab1 -> lab1
 
 user@DESKTOP-IL3KD9K MINGW64 ~/repository (lab1)
-$
+$ git log --oneline
+0f7ad41 (HEAD -> lab1, LW/lab1) [create Lab1Listing.md]
+e87ba2e (LW/master, master) [create repository]
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (lab1)
+$ git pull LW lab1
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 2.74 KiB | 34.00 KiB/s, done.
+From https://github.com/Nadezhda13Soloveva/Lab
+ * branch            lab1       -> FETCH_HEAD
+   0f7ad41..2692bd8  lab1       -> LW/lab1
+Updating 0f7ad41..2692bd8
+Fast-forward
+ Lab1Listing.md | 199 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 199 insertions(+)
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (lab1)
+$ git log --oneline
+2692bd8 (HEAD -> lab1, LW/lab1) Update Lab1Listing.md with report and listing
+0f7ad41 [create Lab1Listing.md]
+e87ba2e (LW/master, master) [create repository]
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (lab1)
+$ git branch
+* lab1
+  master
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (lab1)
+$ git checkout master
+Switched to branch 'master'
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git branch
+  lab1
+* master
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git merge lab1
+Updating e87ba2e..2692bd8
+Fast-forward
+ Lab1Listing.md | 199 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 199 insertions(+)
+ create mode 100644 Lab1Listing.md
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git branch
+  lab1
+* master
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git push LW --all
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Nadezhda13Soloveva/Lab.git
+   e87ba2e..2692bd8  master -> master
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git branch -d lab1
+Deleted branch lab1 (was 2692bd8).
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git branch
+* master
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git commit -m "[merge lab1 to master]"
+On branch master
+nothing to commit, working tree clean
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git commit -m "[delete branch lab1]"
+On branch master
+nothing to commit, working tree clean
+
 
 
 ```
