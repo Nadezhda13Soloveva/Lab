@@ -267,6 +267,12 @@ $ git commit -m "[delete branch lab1]"
 On branch master
 nothing to commit, working tree clean
 
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git push LW -d lab1
+To https://github.com/Nadezhda13Soloveva/Lab.git
+ - [deleted]         lab1
+
+
 
 
 ```
