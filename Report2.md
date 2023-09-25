@@ -185,6 +185,114 @@ n_soliviova@185.5.249.140's password:
 NewLab2Listing.md                                100% 5823   709.6KB/s   00:00
 ```
 
+```
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git pull
+remote: Enumerating objects: 26, done.
+remote: Counting objects: 100% (26/26), done.
+remote: Compressing objects: 100% (20/20), done.
+remote: Total 21 (delta 6), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (21/21), 5.76 KiB | 9.00 KiB/s, done.
+From https://github.com/Nadezhda13Soloveva/Lab
+   33721df..f3f033f  master     -> LW/master
+   ed9d68a..0ef44a2  main       -> LW/main
+error: The following untracked working tree files would be overwritten by merge:
+        NewLab2Listing.md
+Please move or remove them before you merge.
+Aborting
+Updating fe32cb6..f3f033f
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ mv NewLab2Listing.md Listing2.md
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ ls
+ Lab/             Lab2Listing.md   archive.tar   lab2test.txt
+ Lab1Listing.md   Listing2.md      lab2/        'n_soliviova@185.5.249.140'
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git pull
+Updating fe32cb6..f3f033f
+Fast-forward
+ Lab1Listing.md    | 280 ------------------------------------------------------
+ NewLab2Listing.md | 237 +++++++++++++++++++++++++++++++++++++++++++++
+ README.md         |   0
+ Report2.md        | 191 +++++++++++++++++++++++++++++++++++++
+ 4 files changed, 428 insertions(+), 280 deletions(-)
+ delete mode 100644 Lab1Listing.md
+ create mode 100644 NewLab2Listing.md
+ delete mode 100644 README.md
+ create mode 100644 Report2.md
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ ls
+ Lab/             NewLab2Listing.md   lab2/
+ Lab2Listing.md   Report2.md          lab2test.txt
+ Listing2.md      archive.tar        'n_soliviova@185.5.249.140'
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git checkout master
+Already on 'master'
+Your branch is up to date with 'LW/master'.
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
+$ git checkout main
+Switched to a new branch 'main'
+branch 'main' set up to track 'LW/main'.
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ git merge master
+fatal: refusing to merge unrelated histories
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ --aalow-inrelated-histories
+bash: --aalow-inrelated-histories: command not found
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ --allow-unrelayed-histories
+bash: --allow-unrelayed-histories: command not found
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ --allow-unrelated-histories
+bash: --allow-unrelated-histories: command not found
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ git pull LW master --allow-unrelated-histories
+From https://github.com/Nadezhda13Soloveva/Lab
+ * branch            master     -> FETCH_HEAD
+Merge made by the 'ort' strategy.
+ NewLab2Listing.md | 237 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Report2.md        | 191 +++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 428 insertions(+)
+ create mode 100644 NewLab2Listing.md
+ create mode 100644 Report2.md
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ git merge master
+Already up to date.
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ ls
+ Lab/                lab1/    lab15/         lab6/
+ Lab2Listing.md      lab10/   lab2/          lab7/
+ Listing2.md         lab11/   lab2test.txt   lab8/
+ NewLab2Listing.md   lab12/   lab3/          lab9/
+ Report2.md          lab13/   lab4/         'n_soliviova@185.5.249.140'
+ archive.tar         lab14/   lab5/
+
+user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+$ git push LW --all
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 370 bytes | 370.00 KiB/s, done.
+Total 2 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/Nadezhda13Soloveva/Lab.git
+   0ef44a2..8b9069f  main -> main
+```
+
 5. **Вывод:** В процессе работы научились: использовать вышеперчисленные команды, подключаться к удаленному серверу и работать на нём, работать с SSH ключами,
    архивировать и разархивировать файлы, обмениваться файлами между локальной машиной и удаленным сервером.
    
