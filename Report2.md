@@ -185,6 +185,7 @@ n_soliviova@185.5.249.140's password:
 NewLab2Listing.md                                100% 5823   709.6KB/s   00:00
 ```
 
+  
 ```
 user@DESKTOP-IL3KD9K MINGW64 ~/repository (master)
 $ git pull
@@ -243,18 +244,6 @@ branch 'main' set up to track 'LW/main'.
 user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
 $ git merge master
 fatal: refusing to merge unrelated histories
-
-user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
-$ --aalow-inrelated-histories
-bash: --aalow-inrelated-histories: command not found
-
-user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
-$ --allow-unrelayed-histories
-bash: --allow-unrelayed-histories: command not found
-
-user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
-$ --allow-unrelated-histories
-bash: --allow-unrelated-histories: command not found
 
 user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
 $ git pull LW master --allow-unrelated-histories
