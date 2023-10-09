@@ -58,13 +58,55 @@
 
 leftf,1,<,leftf 
 leftf,2,<,leftf
-leftf,0,<,leftf
+leftf,0,<,checknul
 leftf,3,<,leftf
 leftf,4,<,leftf
 leftf,5,<,leftf
 leftf,6,<,leftf
 leftf,7,<,leftf
 leftf, ,>,first
+
+checknul, ,>,nul
+nul,0,>,nul
+nul, ,>,otr
+otr, ,7,otr1
+otr1,7,>,otr2
+otr2, ,7,otr2
+otr2,7,>,otr3
+otr3, ,7,otr3
+otr3,7,>,otr4
+otr4, ,7,otr4
+otr4,7,>,otr5
+otr5, ,7,otr5
+otr5,7,>,otr6
+otr6, ,7,otr6
+otr6,7,>,otr7
+otr7, ,7,otr7
+otr7,7,>,otr8
+otr8, ,7,otr8
+otr8,7,>,otr9
+otr9, ,7,otr9
+otr9,7,>,otr10
+otr10, ,7,otr10
+otr10,7,>,otr11
+otr11, ,7,otr11
+otr11,7,>,otr12
+otr12, ,7,otr12
+otr12,7,>,otr13
+otr13, ,7,otr13
+otr13,7,>,otr14
+otr14, ,7,otr14
+otr14,7,>,otr15
+otr15, ,7,otr15
+otr15,7,>,otr16
+otr16, ,7,otr16
+otr16,7,>,otr17
+otr17, ,7,otr17
+otr17,7,>,otr18
+otr18, ,7,otr18
+otr18,7,>,otr19
+otr19, ,7,finish
+
 
 right1,0,>,right1 
 right1,2,>,right1
