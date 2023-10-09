@@ -12,8 +12,24 @@ leftf,7,<,leftf
 leftf, ,>,first
 
 checknul, ,>,nul
+checknul,1,<,leftf
+checknul,2,<,leftf
+checknul,3,<,leftf
+checknul,4,<,leftf
+checknul,5,<,leftf
+checknul,6,<,leftf
+checknul,7,<,leftf
+checknul,0,<,leftf
 nul,0,>,nul
 nul, ,>,otr
+nul,1,1,first
+nul,2,2,first
+nul,3,3,first
+nul,4,4,first
+nul,5,5,first
+nul,6,6,first
+nul,7,7,first
+
 otr, ,7,otr1
 otr1,7,>,otr2
 otr2, ,7,otr2
