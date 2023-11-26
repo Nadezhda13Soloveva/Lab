@@ -19,7 +19,6 @@
     
     int main() {
         char number[100];
-        int num;
         char output[100][100];
         int i = 0;
     
