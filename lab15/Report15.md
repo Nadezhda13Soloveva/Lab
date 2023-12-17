@@ -7,147 +7,150 @@
 
 Преподаватель: каф. 806 Севастьянов Виктор Сергеевич
 
-1. **Тема**: Вложенные циклы с параметрами. Обход и линеаризация матриц. 
-2. **Цель работы**: Составить программу ввода квадратной матрицы и печати в строку всех её элементов в заданном порядке следования ("улиточка").
-3. **Задание (Вариант №):**  
-   Вариант №29:  
-     7 6 2 1  
-     13 8 5 3  
-     14 12 9 4  
-     16 15 11 10  
+1. **Тема**: Обработка матриц  
+2. **Цель работы**: Составить программу на языке Си, производящую обработку квадратной матрицы порядка NxN (1<=N<=8) из целых чисел.  
+3. **Задание (Вариант №):** Вариант №29: Замена всех строк, содержащих максимальный элемент матрицы, на строку с минимальным номером, содержащую минимальный элемент матрицы.  
 5. **Алгоритм решения:**
-   - Считываем число - размер нашей матрицы N.
-   - Создаю матрицы вычисленного размера N x N.
-   - Далее считываю N*N чисел для матрицы из N строк и N столбцов и записываю их в неё.
-   - Далее вывожу числа верхнего ряда, правого столбца, нижнего ряда, левого столбца, соответственно сокращая их размеры.
+   - Считываю число - размер нашей матрицы N.
+   - Создаю матрицу вычисленного размера N x N.
+   - Считываю N*N чисел для матрицы из N строк и N столбцов и записываю их в неё. Во время считывания и записи нахожу минимальный элемент, максимальный элемент и минимальный номер сроки, содержащий минимальный элемент.
+   - Построчно проверяю на содержание в ней максимального элемента. Если он в ней содержится, то вывожу строку под номером, соответствующим минимальному номеру строки, содержащей минимальный элемент матрицы. Иначе просто вывожу эту строку.  
+
 6. **Тестовые данные:**
 
 | Входные данные | Выходные данные                                       | Описание тестируемого случая    |
 |----------------|-------------------------------------------------------|---------------------------------|
-| 4              |                                                       |                                 |
-| 1 2 3 4        |                                                       |                                 |
-| 21 22 23 24    | Elements: 1 2 3 4 24 34 44 43 42 41 31 21 22 23 33 32 | Пример для квадратной           |
-| 31 32 33 34    |                                                       | матрицы 4-го порядка.           |
-| 41 42 43 44    |                                                       |                                 |
+| 5              | New matrix:                                           |                                 |
+| 13 7 8 5 3     | 9 7 1 4 9                                             |                                 |
+| 9 7 1 4 9      | 9 7 1 4 9                                             | Пример для квадратной           |
+| 12 11 10 9 13  | 9 7 1 4 9                                             | матрицы 5-го порядка.           |
+| 1 2 3 4 5      | 1 2 3 4 5                                             |                                 |
+| 4 5 6 7 8      | 4 5 6 7 8                                             |                                 |
 |                |                                                       |                                 |
 | 0              | No elements                                           | Пример для матрицы 0-го порядка |
 |                |                                                       |                                 |
-| 1              |                                                       |                                 |
-| 6              | Elements: 6                                           | Пример для матрицы 1-го порядка |
+| 1              | New matrix:                                           |                                 |
+| 6              | 6                                                     | Пример для матрицы 1-го порядка |
 
 7. **Протокол**:
 
-    Программа на Си: [14.c](/14.c)  
+    Программа на Си: [15.c](/15.c)  
 ```
-  #include <stdio.h>
-  #include <string.h>
-  #include <stdlib.h>
-  
-  int main(void) {
-  
-      int count = 0;
-      scanf("%d", &count);
-      int matrix[count][count];
-      if (count == 0) {
-          printf("No elements\n");
-      }
-      else {
-          for (int i = 0; i < count; i++) {
-              for (int j = 0; j < count; j++) {
-                  scanf("%d", &matrix[i][j]);
-              }
-          }
-  
-          printf("Elements: ");
-  
-          int i, j;
-          int startRowIndex = 0, endRowIndex = count - 1;
-          int startColumnIndex = 0, endColumnIndex = count - 1;
-  
-          while (startRowIndex <= endRowIndex && startColumnIndex <= endColumnIndex) {
-              // Вывод верхней строки
-              for (j = startColumnIndex; j <= endColumnIndex; j++) {
-                  printf("%d ", matrix[startRowIndex][j]);
-              }
-              startRowIndex++;
-  
-              // Вывод правого столбца
-              for (i = startRowIndex; i <= endRowIndex; i++) {
-                  printf("%d ", matrix[i][endColumnIndex]);
-              }
-              endColumnIndex--;
-  
-              // Вывод нижней строки
-              if (startRowIndex <= endRowIndex) {
-                  for (j = endColumnIndex; j >= startColumnIndex; j--) {
-                      printf("%d ", matrix[endRowIndex][j]);
-                  }
-                  endRowIndex--;
-              }
-  
-              // Вывод левого столбца
-              if (startColumnIndex <= endColumnIndex) {
-                  for (i = endRowIndex; i >= startRowIndex; i--) {
-                      printf("%d ", matrix[i][startColumnIndex]);
-                  }
-                  startColumnIndex++;
-              }
-          }
-      }
-      return 0;
-  }
-
+   #include <stdio.h>
+   #include <string.h>
+   #include <stdlib.h>
+   
+   int main(void) {
+       int min_el = 1000000, max_el = -1000000, min_row_with_min = 0;
+       int count = 0;
+       scanf("%d", &count);
+       int matrix[count][count];
+       if (count == 0) {
+           printf("No elements\n");
+       }
+       else {
+           for (int i = 0; i < count; i++) {
+               for (int j = 0; j < count; j++) {
+                   scanf("%d", &matrix[i][j]);
+                   if (matrix[i][j] < min_el) {
+                       min_el = matrix[i][j];
+                       min_row_with_min = i;
+                   }
+                   else if (matrix[i][j] > max_el) {
+                       max_el = matrix[i][j];
+                   } 
+               }
+           }
+   
+           printf("New matrix:\n");
+           for (int i = 0; i < count; i++) {
+               int find_max = 0;
+               for (int j = 0; j < count; j++) {
+                   if (matrix[i][j] == max_el) {
+                       find_max = 1;
+                   }
+               }
+               if (find_max == 1) {
+                   for (int j = 0; j < count; j++) {
+                       printf("%d ", matrix[min_row_with_min][j]);
+                   }
+                   printf("\n");
+               }
+               else if (find_max == 0) {
+                   for (int j = 0; j < count; j++) {
+                       printf("%d ", matrix[i][j]);
+                   }
+                   printf("\n");
+               }
+           }
+   
+       }
+       return 0;
+   }
 ```
 
   Компиляция:
 ```
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $ gcc -std=c99 -Wall -pedantic 14.c
-  
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $ ./a
-  0
-  No elements
-  
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $ ./a
-  1
-  6
-  Elements: 6
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $ ./
-  bash: ./: Is a directory
-  
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $ ./a
-  2
-  4 5
-  6 7
-  Elements: 4 5 7 6
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $ ./a
-  3
-  1 2 3
-  21 22 23
-  31
-  32
-  33
-  Elements: 1 2 3 23 33 32 31 21 22
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $ ./a
-  4
-  1 2 3 4
-  21 22 23 24
-  31
-  32
-  33
-  34
-  41 42 43 44
-  Elements: 1 2 3 4 24 34 44 43 42 41 31 21 22 23 33 32
-  user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab14 (main)
-  $
+   user@DESKTOP-IL3KD9K MINGW64 ~ (main)
+   $ cd repository
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository (main)
+   $ cd lab15
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab15 (main)
+   $ ls
+   15.c  a.exe*  lab15.c  output/  readme.md  test.txt
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab15 (main)
+   $ gcc -std=c99 -Wall -pedantic 15.c
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab15 (main)
+   $ ./a
+   5
+   4 5 6 7 8
+   13 7 2 3 9
+   6 5 4 2 1
+   8 9 10 11 13
+   1 2 3 4 5
+   New matrix:
+   4 5 6 7 8
+   6 5 4 2 1
+   6 5 4 2 1
+   6 5 4 2 1
+   1 2 3 4 5
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab15 (main)
+   $ ./a
+   5
+   13 7 8 5 3
+   9 7 1 4 9
+   12 11 10 9 13
+   1 2 3 4 5
+   4 5 6 7 8
+   New matrix:
+   9 7 1 4 9
+   9 7 1 4 9
+   9 7 1 4 9
+   1 2 3 4 5
+   4 5 6 7 8
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab15 (main)
+   $ ./a
+   0
+   No elements
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab15 (main)
+   $ ./a
+   1
+   6
+   New matrix:
+   6
+   
+   user@DESKTOP-IL3KD9K MINGW64 ~/repository/lab15 (main)
+   $
+
 
 ```
   
 7. **Вывод:** В процессе работы закрепили навыки программирования на Си, освоили работу с матрицами. В целом работа понравилось, было интересно работать с матрицами.   
-   Итог: 8/10.   
+   Итог: 9/10.   
