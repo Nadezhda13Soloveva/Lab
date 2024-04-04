@@ -183,6 +183,11 @@ int main() {
 
     } while (choice != 0);
 
+    while (head != NULL) {
+         Node *temp = head;
+         head = head->next;
+         free(temp);
+    }
     return 0;
 }
   ```
